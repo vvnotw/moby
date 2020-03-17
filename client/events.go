@@ -24,6 +24,7 @@ func (cli *Client) Events(ctx context.Context, options types.EventsOptions) (<-c
 	started := make(chan struct{})
 	go func() {
 		defer close(errs)
+		defer close(messages)
 
 		query, err := buildEventsQueryParams(cli.version, options)
 		if err != nil {
